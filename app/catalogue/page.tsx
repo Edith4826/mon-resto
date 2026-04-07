@@ -5,16 +5,16 @@ import Link from "next/link";
 export default function Catalogue() {
   // On crée une liste (Array) avec tous tes plats
   const plats = [
-    { id: 1, nom: "ATTIÉKÉ POISSON", prix: "3 500 F", img: "/attiekepoisngriller.jpeg" },
+    { id: 1, nom: "ATTIÉKÉ POISSON", prix: "3 000 F", img: "/attiekepoisngriller.jpeg" },
     { id: 2, nom: "ESCARGOT", prix: "1 500 F", img: "/escargot.png" },
-    { id: 3, nom: "SPAGHETTI", prix: "2 000 F", img: "/eur1.jpeg" },
+    { id: 3, nom: "des pattes", prix: "3 500 F", img: "/eur1.jpeg" },
     { id: 4, nom: "FOUTOU GRAINE", prix: "3 000 F", img: "/foutou graine.jpeg" },
     { id: 5, nom: "PLACALI SAUCE", prix: "2 500 F", img: "/placalie.jpeg" },
     { id: 6, nom: "SPAGHETTI ASIATIQUE", prix: "3 000 F", img: "/téléchargement (1).jpeg" },
-    { id: 7, nom: "GARBA PRO", prix: "1 000 F", img: "/téléchargement (2).jpeg" },
+    { id: 7, nom: "fritte et hamburger", prix: "5 000 F", img: "/téléchargement (2).jpeg" },
     { id: 8, nom: "FOUTOU AUBERGINE", prix: "3 000 F", img: "/images (3).jpeg" },
-    { id: 9, nom: "RIZ GRAS", prix: "2 500 F", img: "/asi1.jpeg" },
-    { id: 10, nom: "KEDJENOU POULET", prix: "5 000 F", img: "/images (3).jpeg" },
+    { id: 9, nom: "Nems", prix: "2 500 F", img: "/asi1.jpeg" },
+    { id: 10, nom: "foutou sauce claire", prix: "5 000 F", img: "/images (3).jpeg" },
   ];
 
   return (
