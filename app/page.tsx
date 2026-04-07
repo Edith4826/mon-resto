@@ -1,65 +1,144 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+
+export default function Accueil() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div style={{ minHeight: "100vh", position: "relative", color: "white" }}>
+      {/* 1. L'IMAGE DE FOND */}
+      <img
+        src="/resto1.webp"
+        alt="Background Restaurant"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: -1,
+          filter: "brightness(0.5)",
+        }}
+      />
+
+      <center>
+        <br />
+        <br />
+        {/* 2. TON LOGO */}
+        <img
+          src="/logo.jpeg"
+          alt="Logo Restaurant"
+          style={{
+            width: "150px",
+            borderRadius: "50%",
+            border: "3px solid white",
+            boxShadow: "0px 4px 15px rgba(0,0,0,0.5)",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        <br />
+        <br />
+
+        {/* 3. LE TITRE */}
+        <h1
+          style={{
+            fontFamily: "Verdana",
+            fontSize: "45px",
+            fontWeight: "bold",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
+          }}
+        >
+          BIENVENUE CHEZ <span style={{ color: "#FFD700" }}>RESTO les Délices</span>
+        </h1>
+
+        <p style={{ fontSize: "20px", fontFamily: "Arial", fontWeight: "bold" }}>
+          L'excellence culinaire à portée de clic.
+        </p>
+
+        <br />
+        <hr style={{ width: "60%", border: "1px solid white" }} />
+        <br />
+        <br />
+
+        {/* 4. LES BOUTONS DE NAVIGATION */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
+          
+          {/* Bouton Connexion (Marron -> plus clair) */}
+          <Link href="/connexion">
+            <button className="btn btn-primary">
+              SE CONNECTER
+            </button>
+          </Link>
+
+          {/* Bouton Inscription (Blanc -> Marron clair) */}
+          <Link href="/inscription">
+            <button className="btn btn-secondary">
+              S'INSCRIRE
+            </button>
+          </Link>
+
+          {/* Bouton Administrateur (Orange -> plus clair) */}
+          <Link href="/admin">
+            <button className="btn btn-admin">
+              Administrateur
+            </button>
+          </Link>
+          
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </center>
+
+      {/* --- NOUVEAU : LA LOGIQUE CSS POUR L'EFFET HOVER --- */}
+      <style jsx>{`
+        /* Style de base commun à tous les boutons */
+        .btn {
+          padding: 15px 40px;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+          border-radius: 30px;
+          transition: all 0.3s ease-in-out; /* Pour une animation fluide */
+          min-width: 200px;
+          outline: none;
+        }
+
+        /* Effet de survol (hover) commun : Grossit légèrement et ajoute de l'ombre */
+        .btn:hover {
+          transform: scale(1.05); /* Grossit de 5% */
+          box-shadow: 0px 6px 20px rgba(255, 255, 255, 0.3); /* Ombre lumineuse */
+        }
+
+        /* Bouton Primaire (Connexion) */
+        .btn-primary {
+          background-color: #8B4513;
+          color: white;
+          border: 2px solid white;
+        }
+        .btn-primary:hover {
+          background-color: #A0522D; /* Marron plus clair */
+        }
+
+        /* Bouton Secondaire (Inscription) */
+        .btn-secondary {
+          background-color: white;
+          color: #8B4513;
+          border: 2px solid #8B4513;
+        }
+        .btn-secondary:hover {
+          background-color: #FDF5E6; /* Blanc cassé */
+        }
+
+        /* Bouton Admin */
+        .btn-admin {
+          background-color: #FFA500;
+          color: white;
+          border: 2px solid white;
+        }
+        .btn-admin:hover {
+          background-color: #FFB347; /* Orange plus clair */
+        }
+      `}</style>
     </div>
   );
 }
+
+// J'ai supprimé l'ancien helper buttonStyle car on utilise maintenant les classes CSS
