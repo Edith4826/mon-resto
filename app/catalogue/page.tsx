@@ -11,10 +11,10 @@ export default function Catalogue() {
     { id: 4, nom: "FOUTOU GRAINE", prix: "3 000 F", img: "/foutou graine.jpeg" },
     { id: 5, nom: "PLACALI SAUCE", prix: "2 500 F", img: "/placalie.jpeg" },
     { id: 6, nom: "SPAGHETTI ASIATIQUE", prix: "3 000 F", img: "/téléchargement (1).jpeg" },
-    { id: 7, nom: "fritte et hamburger", prix: "5 000 F", img: "/téléchargement (2).jpeg" },
+    { id: 7, nom: "FRITE et HAMBURGER", prix: "5 000 F", img: "/téléchargement (2).jpeg" },
     { id: 8, nom: "FOUTOU AUBERGINE", prix: "3 000 F", img: "/images (3).jpeg" },
     { id: 9, nom: "Nems", prix: "2 500 F", img: "/asi1.jpeg" },
-    { id: 10, nom: "foutou sauce claire", prix: "5 000 F", img: "/images (3).jpeg" },
+    { id: 10, nom: "TAGLIATELLES", prix: "5 000 F", img: "/téléchargement.jpeg" },
   ];
 
   return (
