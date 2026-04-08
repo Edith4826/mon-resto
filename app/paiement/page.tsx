@@ -1,155 +1,156 @@
 "use client";
 
-import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Paiement() {
-  const router = useRouter();
+  const [etape, setEtape] = useState("formulaire");
 
-  const [adresse, setAdresse] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [erreur, setErreur] = useState(""); // Changé en string pour être plus précis
-
-  // --- 1. LOGIQUE DU MASQUE DE SAISIE (CHIFFRES UNIQUEMENT) ---
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const valeur = e.target.value;
-    // On garde uniquement les chiffres via une expression régulière
-    const chiffresSeuls = valeur.replace(/\D/g, "");
-    
-    // On limite à 10 chiffres (standard Côte d'Ivoire)
-    if (chiffresSeuls.length <= 10) {
-      setTelephone(chiffresSeuls);
-    }
-  };
-
-  const gererValidation = () => {
-    if (adresse.trim() === "" || telephone.trim() === "") {
-      setErreur("⚠️ Veuillez remplir l'adresse et le téléphone !");
-    } else if (telephone.length < 10) {
-      setErreur("⚠️ Le numéro de téléphone doit comporter 10 chiffres.");
-    } else {
-      setErreur("");
-      router.push("/confirmation");
-    }
+  const handleConfirmation = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEtape("confirmation");
   };
 
   return (
-    <div style={{ backgroundColor: "#FDF5E6", minHeight: "100vh", padding: "20px" }}>
+    <div className="paiement-container">
       <center>
         <br />
-        <span style={{ fontFamily: "Verdana", fontSize: "32px", color: "#8B4513", fontWeight: "bold" }}>
-          FINALISER VOTRE COMMANDE
-        </span>
-        <hr style={{ width: "70%", border: "1px solid #8B4513", margin: "20px 0" }} />
-        <br />
+        <h1 className="main-title">FINALISER VOTRE COMMANDE</h1>
+        <div className="title-underline"></div>
 
-        <div style={{
-          backgroundColor: "white",
-          display: "inline-block",
-          padding: "30px",
-          border: "2px solid #8B4513",
-          borderRadius: "15px",
-          boxShadow: "0px 4px 15px rgba(0,0,0,0.1)",
-          textAlign: "left",
-          width: "450px"
-        }}>
-          <form>
-            <label style={labelStyle}>Adresse de livraison :</label><br />
-            <input 
-              type="text" 
-              placeholder="Ex: Cocody, Angré 7ème tranche" 
-              style={inputStyle}
-              value={adresse}
-              onChange={(e) => setAdresse(e.target.value)}
-            /><br /><br />
+        <div className="payment-card">
+          {etape === "formulaire" ? (
+            <form onSubmit={handleConfirmation}>
+              {/* RÉCAPITULATIF RAPIDE */}
+              <div className="recap-section">
+                <span className="recap-title">Votre panier :</span>
+                <p>1x Attieke Poisson + 1x Jus de Bissap</p>
+              </div>
 
-            <label style={labelStyle}>Numéro de téléphone :</label><br />
-            <input 
-              type="text" // On utilise text pour mieux contrôler la saisie
-              inputMode="numeric" // Affiche le pavé numérique sur mobile
-              placeholder="Ex: 0748264368" 
-              style={inputStyle}
-              value={telephone}
-              onChange={handlePhoneChange} 
-            /><br /><br />
+              <div className="input-group">
+                <label>Adresse de livraison : *</label>
+                <input type="text" placeholder="Ex: Cocody, Angré 7ème tranche" required />
+              </div>
 
-            <label style={labelStyle}>Mode de paiement :</label><br />
-            <select style={inputStyle}>
-              <option>Paiement à la livraison (Cash)</option>
-              <option>Orange Money</option>
-              <option>MTN MoMo</option>
-              <option>Wave</option>
-            </select>
-            <br /><br />
+              <div className="input-group">
+                <label>Numéro de téléphone : *</label>
+                <input type="tel" placeholder="Ex: 07 00 00 00 00" required />
+              </div>
 
-            {/* --- 2. RÉCAPITULATIF DU PRIX --- */}
-            <div style={{ 
-              backgroundColor: "#FFF9E6", 
-              padding: "15px", 
-              borderRadius: "10px", 
-              border: "1px dashed #8B4513",
-              marginBottom: "15px",
-              textAlign: "center"
-            }}>
-              <span style={{ color: "#333", fontSize: "16px", fontWeight: "bold" }}>Total à payer :</span>
-              <br />
-              <span style={{ color: "#2E7D32", fontSize: "24px", fontWeight: "bold" }}>5 500 F CFA</span>
-            </div>
+              <div className="input-group">
+                <label>Mode de paiement :</label>
+                <select className="select-style">
+                  <option>Paiement à la livraison (Cash)</option>
+                  <option>Orange Money</option>
+                  <option>Wave</option>
+                  <option>MTN / Moov Money</option>
+                </select>
+              </div>
 
-            {/* MESSAGE D'ERREUR */}
-            {erreur && (
-              <p style={{ color: "red", fontWeight: "bold", textAlign: "center", fontSize: "14px" }}>
-                {erreur}
-              </p>
-            )}
+              <div className="total-box">
+                <span className="total-label">Total à payer :</span>
+                <span className="total-price">5 500 F CFA</span>
+              </div>
 
-            <center>
-              <button 
-                type="button" 
-                onClick={gererValidation}
-                style={{
-                  width: "100%",
-                  height: "50px",
-                  backgroundColor: "#2E7D32",
-                  color: "white",
-                  fontWeight: "bold",
-                  fontSize: "18px",
-                  borderRadius: "10px",
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "0.3s"
-                }}
-              >
+              <button type="submit" className="btn-confirm">
                 CONFIRMER LE PAIEMENT
               </button>
-            </center>
-          </form>
+              
+              <p className="security-note">🔒 Paiement sécurisé & sans frais cachés</p>
+            </form>
+          ) : (
+            <div className="success-view">
+              <div className="check-icon">✅</div>
+              <h2>COMMANDE ENVOYÉE !</h2>
+              <p>Votre repas est en cours de préparation.</p>
+              <p>Estimation : <b>35 min</b></p>
+              <Link href="/catalogue">
+                <button className="btn-secondary">Retour au menu</button>
+              </Link>
+            </div>
+          )}
         </div>
 
-        <br /><br />
-        <Link href="/catalogue" style={{ color: "#8B4513", fontFamily: "Verdana", textDecoration: "none" }}>
-          <b>← Retour au catalogue</b>
+        <br />
+        <Link href="/catalogue" className="back-link">
+          ← Modifier ma commande
         </Link>
       </center>
+
+      <style jsx>{`
+        .paiement-container {
+          background-color: #FDF5E6;
+          min-height: 100vh;
+          padding: 40px 20px;
+        }
+        .main-title { color: #5D2E0C; font-weight: 900; font-size: 32px; }
+        .title-underline { width: 400px; height: 3px; background: #8B4513; margin: 10px auto 40px; }
+
+        .payment-card {
+          background: white;
+          border: 2px solid #8B4513;
+          border-radius: 20px;
+          padding: 30px;
+          width: 100%;
+          max-width: 450px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          text-align: left;
+        }
+
+        .recap-section {
+          background: #fdf5e6;
+          padding: 10px 15px;
+          border-radius: 10px;
+          margin-bottom: 20px;
+          border-left: 4px solid #FFD700;
+          color: #5D2E0C;
+        }
+        .recap-title { font-weight: bold; font-size: 14px; }
+
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-weight: bold; color: #8B4513; margin-bottom: 5px; font-size: 15px; }
+        input, .select-style {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 16px;
+          outline: none;
+        }
+        input:focus { border-color: #2E7D32; }
+
+        .total-box {
+          border: 2px dashed #FFD700;
+          padding: 15px;
+          text-align: center;
+          margin: 20px 0;
+          border-radius: 10px;
+          background: #fffdf0;
+        }
+        .total-label { display: block; color: #555; }
+        .total-price { font-size: 24px; font-weight: 900; color: #2E7D32; }
+
+        .btn-confirm {
+          width: 100%;
+          background: #2E7D32;
+          color: white;
+          border: none;
+          padding: 15px;
+          border-radius: 10px;
+          font-weight: bold;
+          font-size: 16px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+        .btn-confirm:hover { background: #1B5E20; transform: scale(1.02); }
+
+        .security-note { text-align: center; font-size: 12px; color: #888; margin-top: 10px; }
+        .back-link { color: #8B4513; text-decoration: none; font-weight: bold; }
+        
+        .success-view { text-align: center; padding: 20px; }
+        .check-icon { font-size: 50px; margin-bottom: 10px; }
+        .btn-secondary { background: white; border: 1px solid #8B4513; color: #8B4513; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 15px; }
+      `}</style>
     </div>
   );
 }
-
-const labelStyle = {
-  fontSize: "18px",
-  color: "#8B4513",
-  fontFamily: "Arial",
-  fontWeight: "bold" as const,
-};
-
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  marginTop: "8px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-  boxSizing: "border-box" as const,
-  fontSize: "16px",
-  color: "black"
-};

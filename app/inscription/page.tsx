@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Inscription() {
-  // États pour stocker les saisies
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -13,35 +12,30 @@ export default function Inscription() {
     mdp: "",
     confirmMdp: ""
   });
-
+  
+  const [estInscrit, setEstInscrit] = useState(false); // État pour afficher les choix après succès
   const router = useRouter();
 
-  // Fonction pour mettre à jour les champs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Fonction de validation
   const handleInscription = (e: React.FormEvent) => {
     e.preventDefault();
-
     const { nom, prenom, email, mdp, confirmMdp } = formData;
 
-    // 1. Vérifier si des champs sont vides
     if (!nom || !prenom || !email || !mdp || !confirmMdp) {
       alert("Attention : Tous les champs doivent être remplis !");
       return;
     }
 
-    // 2. Vérifier si les mots de passe correspondent
     if (mdp !== confirmMdp) {
       alert("Erreur : Les mots de passe ne sont pas identiques.");
       return;
     }
 
-    // 3. Si tout est OK
-    alert("Inscription réussie ! Bienvenue " + prenom);
-    router.push("/catalogue");
+    // Si tout est OK, on affiche les options de redirection
+    setEstInscrit(true);
   };
 
   return (
@@ -57,145 +51,159 @@ export default function Inscription() {
           height: "100%",
           objectFit: "cover",
           zIndex: -1,
-          filter: "brightness(0.6)",
+          filter: "brightness(0.5)",
         }}
       />
 
       <center>
         <br /><br />
-        <span style={{ fontFamily: "Verdana", fontSize: "32px", fontWeight: "bold" }}>
+        <span style={{ fontFamily: "Verdana", fontSize: "32px", fontWeight: "bold", letterSpacing: "2px" }}>
           REJOIGNEZ-NOUS
         </span>
-        <hr style={{ width: "40%", border: "1px solid white" }} />
+        <hr style={{ width: "150px", border: "2px solid #FFD700", marginTop: "10px" }} />
         <br />
 
-        <div
-          style={{
-            backgroundColor: "white",
-            display: "inline-block",
-            padding: "20px",
-            opacity: 0.93,
-            borderRadius: "15px",
-            boxShadow: "0px 4px 20px rgba(0,0,0,0.4)",
-            width: "400px",
-            textAlign: "left",
-          }}
-        >
-          <form onSubmit={handleInscription}>
-            <label style={labelStyle}>Nom :</label>
-            <br />
-            <input 
-              type="text" 
-              name="nom" 
-              placeholder="Votre nom" 
-              style={inputStyle} 
-              onChange={handleChange}
-            />
-            <br /><br />
-
-            <label style={labelStyle}>Prénom :</label>
-            <br />
-            <input 
-              type="text" 
-              name="prenom" 
-              placeholder="Votre prénom" 
-              style={inputStyle} 
-              onChange={handleChange}
-            />
-            <br /><br />
-
-            <label style={labelStyle}>Email :</label>
-            <br />
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="exemple@mail.com" 
-              style={inputStyle} 
-              onChange={handleChange}
-            />
-            <br /><br />
-
-            <label style={labelStyle}>Mot de Passe :</label>
-            <br />
-            <input
-              type="password"
-              name="mdp"
-              placeholder="Créer un mot de passe"
-              style={inputStyle}
-              onChange={handleChange}
-            />
-            <br /><br />
-
-            <label style={labelStyle}>Confirmer le mot de passe :</label>
-            <br />
-            <input
-              type="password"
-              name="confirmMdp"
-              placeholder="Répéter le mot de passe"
-              style={inputStyle}
-              onChange={handleChange}
-            />
-            <br /><br />
-
-            <center>
-              <button
-                type="submit"
-                style={{
-                  width: "100%",
-                  height: "45px",
-                  cursor: "pointer",
-                  backgroundColor: "#8B4513",
-                  color: "white",
-                  fontWeight: "bold",
-                  borderRadius: "5px",
-                  fontSize: "16px",
-                  border: "none",
-                  marginTop: "10px",
-                }}
-              >
-                S'INSCRIRE ET COMMANDER
-              </button>
-
-              <div style={{ marginTop: "20px", textAlign: "center" }}>
-                <span style={{ color: "#8B4513", fontSize: "14px", fontFamily: "Arial" }}>
-                  Déjà un compte ?{" "}
-                </span>
-                <Link href="/connexion" style={{ 
-                  color: "#8B4513", 
-                  fontSize: "14px", 
-                  textDecoration: "underline", 
-                  fontWeight: "bold",
-                  fontFamily: "Arial"
-                }}>
-                  Se connecter ici
-                </Link>
+        <div className="inscription-card">
+          {!estInscrit ? (
+            <form onSubmit={handleInscription}>
+              <div className="form-grid">
+                <div>
+                  <label style={labelStyle}>NOM :</label>
+                  <input type="text" name="nom" placeholder="Votre nom" style={inputStyle} onChange={handleChange} />
+                </div>
+                <div style={{ marginTop: "15px" }}>
+                  <label style={labelStyle}>PRÉNOM :</label>
+                  <input type="text" name="prenom" placeholder="Votre prénom" style={inputStyle} onChange={handleChange} />
+                </div>
               </div>
-            </center>
-          </form>
+
+              <div style={{ marginTop: "15px" }}>
+                <label style={labelStyle}>EMAIL :</label>
+                <input type="email" name="email" placeholder="exemple@mail.com" style={inputStyle} onChange={handleChange} />
+              </div>
+
+              <div style={{ marginTop: "15px" }}>
+                <label style={labelStyle}>MOT DE PASSE :</label>
+                <input type="password" name="mdp" placeholder="Créer un mot de passe" style={inputStyle} onChange={handleChange} />
+              </div>
+
+              <div style={{ marginTop: "15px" }}>
+                <label style={labelStyle}>CONFIRMATION :</label>
+                <input type="password" name="confirmMdp" placeholder="Répéter le mot de passe" style={inputStyle} onChange={handleChange} />
+              </div>
+
+              <button type="submit" className="btn-submit">
+                CRÉER MON COMPTE
+              </button>
+            </form>
+          ) : (
+            /* OPTIONS APRÈS INSCRIPTION RÉUSSIE */
+            <div className="success-container">
+              <div className="success-icon">🎉</div>
+              <h2 style={{ color: "#2E7D32", margin: "10px 0" }}>Bienvenue, {formData.prenom} !</h2>
+              <p style={{ color: "#555", marginBottom: "20px" }}>Votre compte a été créé avec succès. Que voulez-vous faire ?</p>
+              
+              <button onClick={() => router.push("/paiement")} className="btn-pay">
+                 💳 PASSER AU PAIEMENT
+              </button>
+              
+              <div className="or-text">OU</div>
+
+              <button onClick={() => router.push("/catalogue")} className="btn-catalogue">
+                 🍴 VOIR LE CATALOGUE
+              </button>
+            </div>
+          )}
+
+          <div style={{ marginTop: "20px", textAlign: "center" }}>
+            <span style={{ color: "#5D2E0C", fontSize: "14px" }}>Déjà un compte ? </span>
+            <Link href="/connexion" style={{ color: "#8B4513", fontWeight: "bold", textDecoration: "underline" }}>
+              Se connecter ici
+            </Link>
+          </div>
         </div>
 
         <br /><br />
-        <Link href="/" style={{ color: "white", fontFamily: "Verdana", textDecoration: "none" }}>
-          <b>[ Retour à l'accueil ]</b>
+        <Link href="/" style={{ color: "white", fontFamily: "Verdana", textDecoration: "none", opacity: 0.8 }}>
+          <b>← Retour à l'accueil</b>
         </Link>
       </center>
+
+      <style jsx>{`
+        .inscription-card {
+          background-color: rgba(255, 255, 255, 0.95);
+          display: inline-block;
+          padding: 30px;
+          border-radius: 20px;
+          box-shadow: 0px 15px 35px rgba(0,0,0,0.4);
+          width: 400px;
+          text-align: left;
+          animation: fadeIn 0.5s ease;
+        }
+
+        .btn-submit {
+          width: 100%;
+          height: 50px;
+          background-color: #8B4513;
+          color: white;
+          font-weight: bold;
+          border-radius: 10px;
+          border: none;
+          margin-top: 25px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+        .btn-submit:hover { background: #5D2E0C; transform: translateY(-2px); }
+
+        .success-container { text-align: center; padding: 10px 0; }
+        .success-icon { font-size: 50px; }
+        
+        .btn-pay {
+          width: 100%;
+          padding: 15px;
+          background: #2E7D32;
+          color: white;
+          border: none;
+          border-radius: 12px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+        .btn-pay:hover { background: #1B5E20; transform: scale(1.02); }
+
+        .btn-catalogue {
+          width: 100%;
+          padding: 12px;
+          background: white;
+          color: #8B4513;
+          border: 2px solid #8B4513;
+          border-radius: 12px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .or-text { margin: 10px 0; color: #888; font-weight: bold; font-size: 12px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
     </div>
   );
 }
 
 const labelStyle = {
-  fontSize: "18px",
-  color: "#8B4513",
+  fontSize: "13px",
+  color: "#5D2E0C",
   fontFamily: "Arial",
   fontWeight: "bold" as const,
+  textTransform: "uppercase" as const,
 };
 
 const inputStyle = {
-  padding: "8px",
-  borderRadius: "5px",
-  border: "1px solid #ccc",
+  padding: "12px",
+  borderRadius: "8px",
+  border: "1px solid #ddd",
   width: "100%",
   marginTop: "5px",
   boxSizing: "border-box" as const,
-  color: "black"
+  color: "black",
+  fontSize: "15px"
 };
