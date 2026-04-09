@@ -18,7 +18,10 @@ export default function Catalogue() {
     { id: 8, nom: "FOUTOU AUBERGINE", prix: "3 000 F", img: "/images (3).jpeg", cat: "Plats" },
     { id: 9, nom: "Nems", prix: "2 500 F", img: "/asi1.jpeg", cat: "Entrées" },
     { id: 10, nom: "TAGLIATELLES", prix: "5 000 F", img: "/téléchargement.jpeg", cat: "Plats" },
-    { id: 11, nom: "Jus de Bissap", prix: "1 000 F", img: "/bissap.jpg", cat: "Boissons" },
+    { id: 11, nom: "Jus de Bissap", prix: "1 000 F", img: "/jus-bissap.jpg", cat: "Boissons" },
+    { id: 12, nom: "Jus de Pasteque", prix: "2 000 F", img: "/jus pasteque.jpg", cat: "Boissons" },
+    { id: 13, nom: "Jus d annanas", prix: "1 500 F", img: "/jus-annas-gimb.jpg", cat: "Boissons" },
+
   ];
 
   const categories = ["Tous", "Entrées", "Plats", "Grillades", "Boissons"];

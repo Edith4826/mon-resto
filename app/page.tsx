@@ -6,19 +6,20 @@ import { useRouter } from "next/navigation";
 
 // --- LISTE COMPLÈTE DE 13 PLATS (ne rien enlever) ---
 const PLATS = [
-  { id: 1, nom: "Garba Spécial", prix: "2000 FCFA", image: "/garba.webp", tag: "Populaire" },
-  { id: 2, nom: "Foutou Banane Graine", prix: "3500 FCFA", image: "/foutou.webp", tag: "" },
-  { id: 3, nom: "Alloco Poisson Braisé", prix: "2500 FCFA", image: "/alloco.webp", tag: "" },
-  { id: 4, nom: "Placali Sauce Kpala", prix: "3000 FCFA", image: "/placali.webp", tag: "" },
-  { id: 5, nom: "Attiéké Poisson Frit", prix: "2000 FCFA", image: "/attieke.webp", tag: "" },
-  { id: 6, nom: "Sauce Gouagouassou", prix: "4000 FCFA", image: "/gouagouassou.webp", tag: "Chef" },
-  { id: 7, nom: "Kedjenou de Poulet", prix: "4500 FCFA", image: "/kedjenou.webp", tag: "" },
-  { id: 8, nom: "Riz Gras au Poulet", prix: "2500 FCFA", image: "/rizgras.webp", tag: "Nouveau" },
-  { id: 9, nom: "Choukouya de Mouton", prix: "5000 FCFA", image: "/choukouya.webp", tag: "" },
-  { id: 10, nom: "Kabato Sauce Lalo", prix: "2500 FCFA", image: "/kabato.webp", tag: "" },
-  { id: 11, nom: "Braisé de Porc", prix: "3000 FCFA", image: "/porc.webp", tag: "" },
-  { id: 12, nom: "Soupe de Poisson", prix: "3500 FCFA", image: "/soupe.webp", tag: "" },
-  { id: 13, nom: "Pastels / Accras", prix: "1500 FCFA", image: "/aperitif.webp", tag: "Entrée" },
+  { id: 1, nom: "", prix: "2000 FCFA", image: "/desire.jpg", tag: "Populaire" },
+  { id: 2, nom: "KEDJENOU DE POULET", prix: "3500 FCFA", image: "/kedjenou-poulet.jpg", tag: "" },
+  { id: 3, nom: "", prix: "2500 FCFA", image: "/desire1.jpg", tag: "" },
+  { id: 4, nom: "", prix: "3000 FCFA", image: "/plat-viande-bouef.jpg", tag: "" },
+  { id: 5, nom: "", prix: "2000 FCFA", image: "/poisson igname.jpg", tag: "" },
+  { id: 6, nom: "", prix: "4000 FCFA", image: "/poulet sauter.jpeg", tag: "Chef" },
+  { id: 7, nom: "", prix: "4500 FCFA", image: "/ragout de pomme.jpg", tag: "" },
+  { id: 8, nom: "", prix: "2500 FCFA", image: "/sosice.jpg", tag: "Nouveau" },
+  { id: 9, nom: "", prix: "5000 FCFA", image: "/spa-creme-.jpg", tag: "" },
+  { id: 10, nom: "", prix: "2500 FCFA", image: "/viande-abolo.jpg", tag: "" },
+  { id: 11, nom: "", prix: "3000 FCFA", image: "/spa-creme-.jpg", tag: "" },
+  { id: 12, nom: "", prix: "3500 FCFA", image: "/nes.jpg", tag: "" },
+  { id: 13, nom: "", prix: "1500 FCFA", image: "/spa.jpg", tag: "Entrée" },
+  
 ];
 
 export default function Accueil() {
