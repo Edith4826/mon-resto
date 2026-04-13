@@ -4,22 +4,20 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation"; 
 
-// --- LISTE COMPLÈTE DE 13 PLATS (ne rien enlever) ---
 const PLATS = [
-  { id: 1, nom: "", prix: "2000 FCFA", image: "/desire.jpg", tag: "Populaire" },
+  { id: 1, nom: "LASAGNE MAISON", prix: "2000 FCFA", image: "/desire.jpg", tag: "Populaire" },
   { id: 2, nom: "KEDJENOU DE POULET", prix: "3500 FCFA", image: "/kedjenou-poulet.jpg", tag: "" },
-  { id: 3, nom: "", prix: "2500 FCFA", image: "/desire1.jpg", tag: "" },
-  { id: 4, nom: "", prix: "3000 FCFA", image: "/plat-viande-bouef.jpg", tag: "" },
-  { id: 5, nom: "", prix: "2000 FCFA", image: "/poisson igname.jpg", tag: "" },
-  { id: 6, nom: "", prix: "4000 FCFA", image: "/poulet sauter.jpeg", tag: "Chef" },
-  { id: 7, nom: "", prix: "4500 FCFA", image: "/ragout de pomme.jpg", tag: "" },
-  { id: 8, nom: "", prix: "2500 FCFA", image: "/sosice.jpg", tag: "Nouveau" },
-  { id: 9, nom: "", prix: "5000 FCFA", image: "/spa-creme-.jpg", tag: "" },
-  { id: 10, nom: "", prix: "2500 FCFA", image: "/viande-abolo.jpg", tag: "" },
-  { id: 11, nom: "", prix: "3000 FCFA", image: "/spa-creme-.jpg", tag: "" },
-  { id: 12, nom: "", prix: "3500 FCFA", image: "/nes.jpg", tag: "" },
-  { id: 13, nom: "", prix: "1500 FCFA", image: "/spa.jpg", tag: "Entrée" },
-  
+  { id: 3, nom: "POISSON BRAISÉ", prix: "2500 FCFA", image: "/desire1.jpg", tag: "" },
+  { id: 4, nom: "VIANDE DE BOEUF", prix: "3000 FCFA", image: "/plat-viande-bouef.jpg", tag: "" },
+  { id: 5, nom: "POISSON IGNAME", prix: "2000 FCFA", image: "/poisson igname.jpg", tag: "" },
+  { id: 6, nom: "POULET SAUTÉ", prix: "4000 FCFA", image: "/poulet sauter.jpeg", tag: "Chef" },
+  { id: 7, nom: "RAGOUT DE POMME", prix: "4500 FCFA", image: "/ragout de pomme.jpg", tag: "" },
+  { id: 8, nom: "SAUCISSE GRILLÉE", prix: "2500 FCFA", image: "/sosice.jpg", tag: "Nouveau" },
+  { id: 9, nom: "PÂTES À LA CRÈME", prix: "5000 FCFA", image: "/spa-creme-.jpg", tag: "" },
+  { id: 10, nom: "VIANDE ABOLO", prix: "2500 FCFA", image: "/viande-abolo.jpg", tag: "" },
+  { id: 11, nom: "SPAGHETTI CRÈME", prix: "3000 FCFA", image: "/spa-creme-.jpg", tag: "" },
+  { id: 12, nom: "PLAT DU JOUR", prix: "3500 FCFA", image: "/nes.jpg", tag: "" },
+  { id: 13, nom: "ENTRÉE SPÉCIALE", prix: "1500 FCFA", image: "/spa.jpg", tag: "Entrée" },
 ];
 
 export default function Accueil() {
@@ -35,25 +33,28 @@ export default function Accueil() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", color: "white", paddingBottom: "100px" }}>
+    <div style={{ minHeight: "100vh", color: "white", paddingBottom: "100px", overflowX: "hidden" }}>
       
-      {/* NAVBAR FIXE */}
+      {/* NAVBAR CORRIGÉE POUR MOBILE */}
       <nav style={{ 
         position: "fixed", top: 0, width: "100%", zIndex: 100,
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        padding: "10px 40px", background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)",
-        borderBottom: "1px solid rgba(255,255,255,0.1)"
+        padding: "10px 15px", // Réduit pour mobile
+        background: "rgba(0,0,0,0.9)", backdropFilter: "blur(10px)",
+        borderBottom: "1px solid rgba(255,255,255,0.1)",
+        flexWrap: "wrap", // Permet de passer à la ligne sur petit écran
+        gap: "10px"
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <img src="/logo.jpeg" alt="Logo" style={{ width: "40px", borderRadius: "50%" }} />
-          <span style={{ fontWeight: "bold", color: "#FFD700", fontSize: "20px" }}>RESTO Les Délices</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <img src="/logo.jpeg" alt="Logo" style={{ width: "35px", height: "35px", borderRadius: "50%" }} />
+          <span style={{ fontWeight: "bold", color: "#FFD700", fontSize: "16px" }}>RESTO Les Délices</span>
         </div>
 
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <Link href="/inscription"><button className="btn-nav">Inscription</button></Link>
           <Link href="/connexion"><button className="btn-nav btn-connexion">Connexion</button></Link>
           
-          <div onClick={() => router.push("/connexion")} style={{ position: "relative", cursor: "pointer", fontSize: "22px" }}>
+          <div onClick={() => router.push("/connexion")} style={{ position: "relative", cursor: "pointer", fontSize: "20px", marginLeft: "5px" }}>
             🛒 {panier.length > 0 && <span className="cart-badge">{panier.length}</span>}
           </div>
         </div>
@@ -63,85 +64,78 @@ export default function Accueil() {
       <img src="/resto1.webp" alt="Background" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: -1, filter: "brightness(0.2)" }} />
 
       <center>
-        <br /><br /><br /><br /><br />
-        <h1 style={{ fontFamily: "Verdana", fontSize: "35px", fontWeight: "bold" }}>
-          NOTRE <span style={{ color: "#FFD700" }}>MENU</span>
-        </h1>
-        
-        <p style={{ color: "#FFD700", fontWeight: "bold", letterSpacing: "2px", margin: "10px 0" }}>
-          --- DÉCOUVREZ NOS VARIÉTÉS ---
-        </p>
+        <div style={{ paddingTop: "100px" }}> {/* Espace pour la navbar qui wrap */}
+          <h1 style={{ fontFamily: "Verdana", fontSize: "28px", fontWeight: "bold" }}>
+            NOTRE <span style={{ color: "#FFD700" }}>MENU</span>
+          </h1>
+          
+          <p style={{ color: "#FFD700", fontWeight: "bold", letterSpacing: "1px", margin: "10px 0", fontSize: "14px" }}>
+            --- DÉCOUVREZ NOS VARIÉTÉS ---
+          </p>
 
-        <a href="tel:+2250102030405" style={{ textDecoration: "none" }}>
-          <button className="btn-contact-small">📞 SERVICE CLIENT : 01 02 03 04 05</button>
-        </a>
+          <a href="tel:+2250102030405" style={{ textDecoration: "none" }}>
+            <button className="btn-contact-small">📞 SERVICE CLIENT : 01 02 03 04 05</button>
+          </a>
 
-        <hr style={{ width: "80%", border: "0.5px solid rgba(255,255,255,0.1)", margin: "40px 0" }} />
+          <hr style={{ width: "80%", border: "0.5px solid rgba(255,255,255,0.1)", margin: "30px 0" }} />
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px", maxWidth: "1200px", padding: "0 20px" }}>
-          {PLATS.map((plat) => {
-            const isSelected = panier.includes(plat.id);
-            return (
-              <div key={plat.id} className={`card-plat ${isSelected ? 'selected' : ''}`}>
-                {plat.tag && <span className="badge">{plat.tag}</span>}
-                <div className="img-container">
-                  <img src={plat.image} alt={plat.nom} className="img-plat" />
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", 
+            gap: "20px", 
+            maxWidth: "1200px", 
+            padding: "0 15px" 
+          }}>
+            {PLATS.map((plat) => {
+              const isSelected = panier.includes(plat.id);
+              return (
+                <div key={plat.id} className={`card-plat ${isSelected ? 'selected' : ''}`}>
+                  {plat.tag && <span className="badge">{plat.tag}</span>}
+                  <div className="img-container">
+                    <img src={plat.image} alt={plat.nom} className="img-plat" />
+                  </div>
+                  <div style={{ padding: "15px" }}>
+                    <h3 style={{ fontSize: "16px", textTransform: "uppercase" }}>{plat.nom}</h3>
+                    <p style={{ color: "#FFD700", fontWeight: "bold", fontSize: "18px", margin: "10px 0" }}>{plat.prix}</p>
+                    
+                    <button onClick={() => commanderPlat(plat.id)} className={`btn-commander ${isSelected ? 'btn-retirer' : ''}`}>
+                      {isSelected ? "✖ RETIRER" : "🛒 COMMANDER"}
+                    </button>
+                  </div>
                 </div>
-                <div style={{ padding: "15px" }}>
-                  <h3 style={{ fontSize: "17px" }}>{plat.nom}</h3>
-                  <p style={{ color: "#FFD700", fontWeight: "bold", fontSize: "18px", margin: "10px 0" }}>{plat.prix}</p>
-                  
-                  <button onClick={() => commanderPlat(plat.id)} className={`btn-commander ${isSelected ? 'btn-retirer' : ''}`}>
-                    {isSelected ? "✖ RETIRER" : "🛒 COMMANDER"}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </center>
 
       <style jsx>{`
-        .btn-nav { background: transparent; color: white; border: 1px solid white; padding: 6px 15px; border-radius: 5px; cursor: pointer; font-size: 12px; transition: 0.3s; }
+        .btn-nav { background: transparent; color: white; border: 1px solid white; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; transition: 0.3s; }
         .btn-connexion { background: white; color: black; }
         .btn-nav:hover { background: #FFD700; color: black; border-color: #FFD700; }
 
-        .cart-badge { position: absolute; top: -5px; right: -10px; background: #FFD700; color: black; font-size: 11px; font-weight: bold; padding: 2px 7px; border-radius: 50%; animation: pop 0.3s ease; }
-        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.4); } 100% { transform: scale(1); } }
+        .cart-badge { position: absolute; top: -5px; right: -10px; background: #FFD700; color: black; font-size: 10px; font-weight: bold; padding: 1px 6px; border-radius: 50%; }
         
-        .btn-contact-small { background: #28a745; color: white; border: none; padding: 10px 25px; font-size: 12px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; }
-        .btn-contact-small:hover { background: #218838; transform: scale(1.05); }
+        .btn-contact-small { background: #28a745; color: white; border: none; padding: 10px 20px; font-size: 11px; font-weight: bold; border-radius: 30px; cursor: pointer; }
 
-        /* MODIFICATION ICI : Retour à un fond plus clair (comme la 2ème capture) */
         .card-plat { 
-          background: rgba(255, 255, 255, 0.05); /* Fond blanc très transparent, moins sombre */
+          background: rgba(255, 255, 255, 0.08); 
           border-radius: 15px; 
           overflow: hidden; 
           border: 1px solid rgba(255,255,255,0.1); 
-          transition: 0.4s ease; 
+          transition: 0.3s; 
           position: relative; 
         }
         
-        /* LA BORDURE DORÉE SÉLECTIONNÉE (toujours là) */
-        .card-plat.selected { 
-          border: 2px solid #FFD700; 
-          box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); 
-          transform: translateY(-5px);
-        }
-        
-        .card-plat:hover:not(.selected) { border-color: rgba(255,215,0,0.5); transform: translateY(-5px); }
+        .card-plat.selected { border: 2px solid #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
 
-        .img-container { height: 180px; overflow: hidden; }
-        .img-plat { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.8; }
-        .card-plat.selected .img-plat, .card-plat:hover .img-plat { opacity: 1; transform: scale(1.1); }
+        .img-container { height: 170px; overflow: hidden; }
+        .img-plat { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
 
-        .badge { position: absolute; top: 10px; left: 10px; background: #FFD700; color: black; padding: 4px 8px; font-size: 9px; font-weight: bold; border-radius: 4px; z-index: 5; }
+        .badge { position: absolute; top: 10px; left: 10px; background: #FFD700; color: black; padding: 3px 7px; font-size: 9px; font-weight: bold; border-radius: 4px; z-index: 5; }
         
-        .btn-commander { background: #FFD700; color: black; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-commander:hover { background: white; }
-        
+        .btn-commander { background: #FFD700; color: black; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
         .btn-retirer { background: #ff4d4d; color: white; }
-        .btn-retirer:hover { background: #cc0000; }
       `}</style>
     </div>
   );

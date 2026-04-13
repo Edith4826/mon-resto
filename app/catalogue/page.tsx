@@ -21,7 +21,6 @@ export default function Catalogue() {
     { id: 11, nom: "Jus de Bissap", prix: "1 000 F", img: "/jus-bissap.jpg", cat: "Boissons" },
     { id: 12, nom: "Jus de Pasteque", prix: "2 000 F", img: "/jus pasteque.jpg", cat: "Boissons" },
     { id: 13, nom: "Jus d annanas", prix: "1 500 F", img: "/jus-annas-gimb.jpg", cat: "Boissons" },
-
   ];
 
   const categories = ["Tous", "Entrées", "Plats", "Grillades", "Boissons"];
@@ -39,7 +38,6 @@ export default function Catalogue() {
         <h1 className="main-title">NOTRE SÉLECTION GOURMANDE</h1>
         <div className="title-underline"></div>
         
-        {/* BARRE DE RECHERCHE AMÉLIORÉE */}
         <div className="search-section">
           <div className="search-wrapper">
             <input 
@@ -53,7 +51,6 @@ export default function Catalogue() {
           </div>
         </div>
 
-        {/* BOUTONS DE FILTRES AMÉLIORÉS */}
         <div className="filter-group">
           {categories.map((cat) => (
             <button 
@@ -76,7 +73,6 @@ export default function Catalogue() {
               platsFiltrés.map((plat) => (
                 <div key={plat.id} className="plat-card">
                   <div className="image-container">
-                    {/* Gestion du fallback image si le lien est mort */}
                     <img 
                       src={plat.img} 
                       alt={plat.nom} 
@@ -113,8 +109,9 @@ export default function Catalogue() {
         </div>
 
         <br /><br />
-        <Link href="/" className="back-link">
-          <b>← Retour à l'accueil</b>
+        {/* MODIFICATION ICI : Couleur marron foncé pour la visibilité */}
+        <Link href="/" className="back-link" style={{ color: "#5D2E0C", fontWeight: "900", textDecoration: "underline" }}>
+          ← Retour à l'accueil
         </Link>
         <br /><br />
       </center>
@@ -144,7 +141,6 @@ export default function Catalogue() {
           margin-bottom: 30px;
         }
 
-        /* RECHERCHE */
         .search-section { margin-bottom: 30px; width: 90%; max-width: 500px; }
         .search-wrapper { position: relative; display: flex; align-items: center; }
         .search-bar {
@@ -164,7 +160,6 @@ export default function Catalogue() {
         }
         .search-icon { position: absolute; right: 20px; font-size: 20px; }
 
-        /* FILTRES */
         .filter-group { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
         .filter-btn {
           padding: 10px 22px;
@@ -182,7 +177,6 @@ export default function Catalogue() {
 
         .subtitle { color: #8B4513; font-style: italic; font-size: 16px; margin-bottom: 10px; }
 
-        /* LISTE ET CARTES */
         .scroll-wrapper {
           overflow-x: auto;
           padding: 20px 10px 40px;
@@ -250,13 +244,12 @@ export default function Catalogue() {
 
         .btn-commander:hover { background: #1B5E20; transform: scale(1.02); }
 
-        .back-link { color: #8B4513; text-decoration: none; transition: 0.3s; padding: 10px; border-radius: 10px; }
-        .back-link:hover { background: rgba(139, 69, 19, 0.1); color: #5D2E0C; }
+        .back-link { transition: 0.3s; padding: 10px; border-radius: 10px; }
+        .back-link:hover { background: rgba(139, 69, 19, 0.1); }
 
         .no-result-container { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 60px; }
         .reset-btn { background: #8B4513; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
 
-        /* Scrollbar */
         .scroll-wrapper::-webkit-scrollbar { height: 6px; }
         .scroll-wrapper::-webkit-scrollbar-thumb { background: #8B4513; border-radius: 10px; }
       `}</style>

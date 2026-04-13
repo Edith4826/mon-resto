@@ -23,7 +23,7 @@ export default function Confirmation() {
       <div style={{ backgroundColor: "#FDF5E6", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ textAlign: "center" }}>
           <div className="spinner"></div>
-          <p style={{ fontFamily: "Arial", color: "#8B4513", fontWeight: "bold", marginTop: "20px" }}>
+          <p style={{ fontFamily: "Arial", color: "#5D2E0A", fontWeight: "bold", marginTop: "20px" }}>
             Traitement de votre commande...
           </p>
         </div>
@@ -58,85 +58,64 @@ export default function Confirmation() {
       padding: "20px"
     }}>
       
+      {/* Icône de validation - Bien contrastée */}
       <div style={{ 
         backgroundColor: "#2E7D32", 
         color: "white", 
-        width: "100px", 
-        height: "100px", 
+        width: "80px", 
+        height: "80px", 
         borderRadius: "50%", 
         display: "flex", 
         alignItems: "center", 
         justifyContent: "center",
-        fontSize: "50px",
+        fontSize: "40px",
         marginBottom: "20px",
-        boxShadow: "0px 4px 10px rgba(0,0,0,0.2)"
+        boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
       }}>
         ✓
       </div>
 
+      {/* Titre en Marron Foncé (plus de flou) */}
       <h1 style={{ 
         fontFamily: "Verdana", 
-        color: "#8B4513", 
-        fontSize: "32px", 
+        color: "#5D2E0A", 
+        fontSize: "28px", 
         fontWeight: "bold",
         margin: "10px 0"
       }}>
-        COMMANDE VALIDÉE !
+        COMMANDE ENVOYÉE !
       </h1>
       
-      <div style={{ backgroundColor: "#8B4513", color: "white", padding: "5px 15px", borderRadius: "20px", fontSize: "14px", fontWeight: "bold", marginBottom: "10px" }}>
-        N° DE COMMANDE : {numCommande}
-      </div>
-
+      {/* Texte en Gris très foncé/Noir */}
       <p style={{ 
         fontFamily: "Arial", 
         fontSize: "18px", 
-        color: "#333", 
+        color: "#222222", 
         maxWidth: "450px", 
         lineHeight: "1.6",
-        margin: "20px 0"
+        margin: "10px 0"
       }}>
-        Merci pour votre confiance. Votre plat est en cours de préparation et sera livré dans <b>30 à 45 minutes</b>.
+        Votre repas est en cours de préparation.<br/>
+        Estimation : <b style={{color: "#2E7D32"}}>35 min</b>
       </p>
 
-      {/* RÉCAPITULATIF MIS À JOUR AVEC TES INFOS */}
-      <div style={{ 
-        backgroundColor: "white", 
-        padding: "20px", 
-        borderRadius: "10px", 
-        border: "1px dashed #8B4513",
-        marginBottom: "30px",
-        boxShadow: "0px 2px 5px rgba(0,0,0,0.05)",
-        width: "100%",
-        maxWidth: "350px"
-      }}>
-        <span style={{ color: "#8B4513", fontWeight: "bold", fontSize: "18px" }}>
-          Récapitulatif de livraison
-        </span>
-        <br />
-        <div style={{ textAlign: "left", marginTop: "15px", fontSize: "15px", color: "#333" }}>
-           📍 <b>Lieu :</b> Angré 8ème tranche<br />
-           📱 <b>Contact :</b> 0748264368<br />
-           💳 <b>Paiement :</b> Cash à la livraison
-        </div>
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "15px", width: "100%", maxWidth: "300px" }}>
+      {/* Liens de navigation vers Accueil et Catalogue */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "15px", width: "100%", maxWidth: "300px", marginTop: "30px" }}>
         
         <Link href="/catalogue">
           <button style={primaryBtn}>
-            REPASSER UNE COMMANDE
+            RETOUR AU CATALOGUE
           </button>
         </Link>
 
-        <Link href="/paiement">
+        <Link href="/">
           <button style={secondaryBtn}>
-            MODIFIER MES INFOS
+            RETOUR À L'ACCUEIL
           </button>
         </Link>
 
-        <Link href="/" style={{ color: "#8B4513", textDecoration: "none", fontSize: "14px", marginTop: "10px", fontFamily: "Arial" }}>
-          <b>← Retour à l'accueil</b>
+        <Link href="/paiement" style={{ color: "#8B4513", textDecoration: "underline", fontSize: "14px", marginTop: "10px", fontWeight: "bold" }}>
+          Modifier ma commande
         </Link>
       </div>
     </div>
@@ -144,9 +123,25 @@ export default function Confirmation() {
 }
 
 const primaryBtn = {
-  backgroundColor: "#8B4513", color: "white", padding: "15px", width: "100%", borderRadius: "10px", border: "none", fontWeight: "bold" as const, cursor: "pointer", fontSize: "16px"
+  backgroundColor: "#8B4513", 
+  color: "white", 
+  padding: "15px", 
+  width: "100%", 
+  borderRadius: "10px", 
+  border: "none", 
+  fontWeight: "bold" as const, 
+  cursor: "pointer", 
+  fontSize: "16px"
 };
 
 const secondaryBtn = {
-  backgroundColor: "transparent", color: "#8B4513", padding: "15px", width: "100%", borderRadius: "10px", border: "2px solid #8B4513", fontWeight: "bold" as const, cursor: "pointer", fontSize: "16px"
+  backgroundColor: "white", 
+  color: "#8B4513", 
+  padding: "15px", 
+  width: "100%", 
+  borderRadius: "10px", 
+  border: "2px solid #8B4513", 
+  fontWeight: "bold" as const, 
+  cursor: "pointer", 
+  fontSize: "16px"
 };

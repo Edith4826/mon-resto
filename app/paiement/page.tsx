@@ -1,156 +1,130 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Paiement() {
-  const [etape, setEtape] = useState("formulaire");
-
-  const handleConfirmation = (e: React.FormEvent) => {
-    e.preventDefault();
-    setEtape("confirmation");
-  };
-
   return (
-    <div className="paiement-container">
+    <div style={{ backgroundColor: "#FDF5E6", minHeight: "100vh", padding: "40px 20px" }}>
       <center>
-        <br />
-        <h1 className="main-title">FINALISER VOTRE COMMANDE</h1>
-        <div className="title-underline"></div>
+        <h1 style={{ color: "#5D2E0A", fontWeight: "900", fontFamily: "Verdana" }}>
+          FINALISER VOTRE COMMANDE
+        </h1>
+        <div style={{ width: "80px", height: "4px", backgroundColor: "#8B4513", margin: "10px 0 30px" }}></div>
 
-        <div className="payment-card">
-          {etape === "formulaire" ? (
-            <form onSubmit={handleConfirmation}>
-              {/* RÉCAPITULATIF RAPIDE */}
-              <div className="recap-section">
-                <span className="recap-title">Votre panier :</span>
-                <p>1x Attieke Poisson + 1x Jus de Bissap</p>
-              </div>
-
-              <div className="input-group">
-                <label>Adresse de livraison : *</label>
-                <input type="text" placeholder="Ex: Cocody, Angré 7ème tranche" required />
-              </div>
-
-              <div className="input-group">
-                <label>Numéro de téléphone : *</label>
-                <input type="tel" placeholder="Ex: 07 00 00 00 00" required />
-              </div>
-
-              <div className="input-group">
-                <label>Mode de paiement :</label>
-                <select className="select-style">
-                  <option>Paiement à la livraison (Cash)</option>
-                  <option>Orange Money</option>
-                  <option>Wave</option>
-                  <option>MTN / Moov Money</option>
-                </select>
-              </div>
-
-              <div className="total-box">
-                <span className="total-label">Total à payer :</span>
-                <span className="total-price">5 500 F CFA</span>
-              </div>
-
-              <button type="submit" className="btn-confirm">
-                CONFIRMER LE PAIEMENT
-              </button>
-              
-              <p className="security-note">🔒 Paiement sécurisé & sans frais cachés</p>
-            </form>
-          ) : (
-            <div className="success-view">
-              <div className="check-icon">✅</div>
-              <h2>COMMANDE ENVOYÉE !</h2>
-              <p>Votre repas est en cours de préparation.</p>
-              <p>Estimation : <b>35 min</b></p>
-              <Link href="/catalogue">
-                <button className="btn-secondary">Retour au menu</button>
-              </Link>
+        <div style={{ 
+          backgroundColor: "white", 
+          padding: "30px", 
+          borderRadius: "20px", 
+          maxWidth: "500px", 
+          border: "2px solid #8B4513",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+        }}>
+          
+          {/* PANIER - Cliquable pour modifier */}
+          <Link href="/catalogue" style={{ textDecoration: "none" }}>
+            <div style={{ 
+              backgroundColor: "#FFF8E1", 
+              borderLeft: "5px solid #FFD700", 
+              padding: "15px", 
+              borderRadius: "8px",
+              textAlign: "left",
+              marginBottom: "25px",
+              cursor: "pointer"
+            }}>
+              <p style={{ color: "#5D2E0A", margin: 0 }}>
+                <b>Votre panier (cliquez pour modifier) :</b><br />
+                <span style={{ color: "#333" }}>1x Attieke Poisson + 1x Jus de Bissap</span>
+              </p>
             </div>
-          )}
+          </Link>
+
+          {/* FORMULAIRE - TEXTES BIEN FONCÉS */}
+          <div style={{ textAlign: "left", marginBottom: "20px" }}>
+            <label style={{ color: "#5D2E0A", fontWeight: "bold", display: "block", marginBottom: "8px" }}>
+              Adresse de livraison : *
+            </label>
+            <input 
+              type="text" 
+              placeholder="Ex: Cocody, Angré 7ème tranche"
+              style={inputStyle}
+            />
+          </div>
+
+          <div style={{ textAlign: "left", marginBottom: "20px" }}>
+            <label style={{ color: "#5D2E0A", fontWeight: "bold", display: "block", marginBottom: "8px" }}>
+              Numéro de téléphone : *
+            </label>
+            <input 
+              type="text" 
+              placeholder="Ex: 07 00 00 00 00"
+              style={inputStyle}
+            />
+          </div>
+
+          <div style={{ textAlign: "left", marginBottom: "30px" }}>
+            <label style={{ color: "#5D2E0A", fontWeight: "bold", display: "block", marginBottom: "8px" }}>
+              Mode de paiement :
+            </label>
+            <select style={inputStyle}>
+              <option>Paiement à la livraison (Cash)</option>
+              <option>Mobile Money (Orange/MTN/Moov)</option>
+            </select>
+          </div>
+
+          {/* TOTAL */}
+          <div style={{ border: "2px dashed #FFD700", padding: "15px", borderRadius: "10px", marginBottom: "25px" }}>
+            <p style={{ color: "#666", margin: "0 0 5px" }}>Total à payer :</p>
+            <h2 style={{ color: "#2E7D32", margin: 0, fontSize: "32px", fontWeight: "900" }}>5 500 F CFA</h2>
+          </div>
+
+          <Link href="/confirmation">
+            <button style={{ 
+              backgroundColor: "#2E7D32", 
+              color: "white", 
+              width: "100%", 
+              padding: "18px", 
+              borderRadius: "12px", 
+              border: "none", 
+              fontWeight: "bold", 
+              fontSize: "18px",
+              cursor: "pointer"
+            }}>
+              CONFIRMER LE PAIEMENT
+            </button>
+          </Link>
+          
+          <p style={{ fontSize: "12px", color: "#8B4513", marginTop: "15px" }}>
+            🔒 Paiement sécurisé & sans frais cachés
+          </p>
         </div>
 
+        {/* LIEN MODIFIER EN BAS - ENFIN VISIBLE */}
         <br />
-        <Link href="/catalogue" className="back-link">
-          ← Modifier ma commande
+        <Link href="/catalogue" style={{ 
+          color: "#5D2E0A", 
+          textDecoration: "underline", 
+          fontWeight: "bold",
+          fontSize: "16px",
+          display: "block",
+          padding: "10px"
+        }}>
+          ← Modifier ma commande (voir le Catalogue)
         </Link>
+        <br />
       </center>
-
-      <style jsx>{`
-        .paiement-container {
-          background-color: #FDF5E6;
-          min-height: 100vh;
-          padding: 40px 20px;
-        }
-        .main-title { color: #5D2E0C; font-weight: 900; font-size: 32px; }
-        .title-underline { width: 400px; height: 3px; background: #8B4513; margin: 10px auto 40px; }
-
-        .payment-card {
-          background: white;
-          border: 2px solid #8B4513;
-          border-radius: 20px;
-          padding: 30px;
-          width: 100%;
-          max-width: 450px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-          text-align: left;
-        }
-
-        .recap-section {
-          background: #fdf5e6;
-          padding: 10px 15px;
-          border-radius: 10px;
-          margin-bottom: 20px;
-          border-left: 4px solid #FFD700;
-          color: #5D2E0C;
-        }
-        .recap-title { font-weight: bold; font-size: 14px; }
-
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-weight: bold; color: #8B4513; margin-bottom: 5px; font-size: 15px; }
-        input, .select-style {
-          width: 100%;
-          padding: 12px;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          font-size: 16px;
-          outline: none;
-        }
-        input:focus { border-color: #2E7D32; }
-
-        .total-box {
-          border: 2px dashed #FFD700;
-          padding: 15px;
-          text-align: center;
-          margin: 20px 0;
-          border-radius: 10px;
-          background: #fffdf0;
-        }
-        .total-label { display: block; color: #555; }
-        .total-price { font-size: 24px; font-weight: 900; color: #2E7D32; }
-
-        .btn-confirm {
-          width: 100%;
-          background: #2E7D32;
-          color: white;
-          border: none;
-          padding: 15px;
-          border-radius: 10px;
-          font-weight: bold;
-          font-size: 16px;
-          cursor: pointer;
-          transition: 0.3s;
-        }
-        .btn-confirm:hover { background: #1B5E20; transform: scale(1.02); }
-
-        .security-note { text-align: center; font-size: 12px; color: #888; margin-top: 10px; }
-        .back-link { color: #8B4513; text-decoration: none; font-weight: bold; }
-        
-        .success-view { text-align: center; padding: 20px; }
-        .check-icon { font-size: 50px; margin-bottom: 10px; }
-        .btn-secondary { background: white; border: 1px solid #8B4513; color: #8B4513; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 15px; }
-      `}</style>
     </div>
   );
 }
+
+// Style commun pour les champs
+const inputStyle = {
+  width: "100%",
+  padding: "12px",
+  borderRadius: "8px",
+  border: "2px solid #8B4513",
+  backgroundColor: "white",
+  color: "#222", // Texte noir pour éviter le flou
+  fontSize: "16px",
+  outline: "none"
+};
